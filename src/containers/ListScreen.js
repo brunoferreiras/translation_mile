@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Header } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { loadResources } from '../actions/resource';
+import Header from '../components/Header';
 
 class ListScreen extends Component {
   render() {
     return (
       <View>
-        <Header
-          statusBarProps={{}}
-          leftComponent={{ icon: 'menu', color: '#fff' }}
-          centerComponent={{
-            text: 'Translation Mile',
-            style: { color: '#fff', fontSize: 20 }
-          }}
-          rightComponent={{ icon: 'home', color: '#fff' }}
-          outerContainerStyles={{ backgroundColor: '#8CB13E' }}
-          innerContainerStyles={{ justifyContent: 'space-between' }}
-        />
+        <Header title="Translations Mile" leftIcon="menu" rightIcon="home" />
       </View>
     );
   }
 }
 
-export default ListScreen;
+const mapStateToProps = state => {
+  return {
+    resources: state.resource.resources
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    load: () => dispatch(loadResources())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListScreen);
