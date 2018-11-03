@@ -1,7 +1,14 @@
 import * as types from '../actions/types';
 
-export function loadResources() {
+export function saveResources(resources) {
   return {
-    type: types.LOAD_RESOURCES
+    type: types.SAVE_RESOURCES,
+    payload: resources
+  };
+}
+
+export function getResources() {
+  return {
+    type: types.GET_RESOURCES
   };
 }

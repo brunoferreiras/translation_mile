@@ -4,7 +4,6 @@ const API_URL = 'http://portal.greenmilesoftware.com/';
 
 const request = axios.create({
   baseURL: API_URL,
-  timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json'

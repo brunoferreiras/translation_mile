@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { loadResources } from '../actions/resource';
+import { getResources } from '../actions/resource';
 import Card from '../components/Card';
 import Header from '../components/Header';
 
@@ -15,6 +15,10 @@ class ListScreen extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.getResources();
+  }  
+
   incrementPage() {
     this.setState({ page: this.state.page + 1 });
   }
@@ -26,6 +30,7 @@ class ListScreen extends Component {
   renderItem = ({ item }) => <Card resource={item.resource} />;
 
   render() {
+    const { loading } = this.props;
     const resources = this.getPartialResources(this.props.resources);
     return (
       <View>
@@ -33,7 +38,7 @@ class ListScreen extends Component {
         <FlatList
           contentContainerStyle={styles.content}
           data={resources}
-          refreshing={false}
+          refreshing={loading}
           onRefresh={() => console.log('Update translations')}
           onEndReached={() => this.incrementPage()}
           ListEmptyComponent={() => (
@@ -67,13 +72,14 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    resources: state.resource.resources
+    resources: state.resource.resources,
+    loading: state.resource.loading
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    load: () => dispatch(loadResources())
+    getResources: () => dispatch(getResources())
   };
 };
 

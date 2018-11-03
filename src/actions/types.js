@@ -1,1 +1,2 @@
-export const LOAD_RESOURCES = 'LOAD_RESOURCES';
+export const GET_RESOURCES = 'GET_RESOURCES';
+export const SAVE_RESOURCES = 'SAVE_RESOURCES';
