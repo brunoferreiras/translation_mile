@@ -13,3 +13,10 @@ export const filterByLanguage = language => {
     payload: language
   };
 };
+
+export const filterByModule = module => {
+  return {
+    type: types.FILTER_BY_MODULE,
+    payload: module
+  };
+};
