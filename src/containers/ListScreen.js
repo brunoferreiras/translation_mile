@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { getResources } from '../actions/resource';
 import Card from '../components/Card';
@@ -35,15 +35,16 @@ class ListScreen extends Component {
   renderItem = ({ item }) => <Card resource={item.resource} />;
 
   render() {
-    const { loading } = this.props;
-    const resources = this.getPartialResources(this.props.resources);
+    const { loading, resources } = this.props;
+    const resourcesResult = this.getPartialResources(resources);
     return (
-      <View>
+      <ScrollView contentContainerStyle={styles.container}>
         <Header title="Translations Mile" leftIcon="menu" rightIcon="home" />
         <FormSearch />
         <FlatList
+          style={styles.flatlist}
           contentContainerStyle={styles.content}
-          data={resources}
+          data={resourcesResult}
           refreshing={loading}
           onRefresh={() => this.updateResources()}
           onEndReached={() => this.incrementPage()}
@@ -57,12 +58,18 @@ class ListScreen extends Component {
           }
           renderItem={this.renderItem}
         />
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  flatlist: {
+    flex: 1
+  },
+  container: {
+    flexGrow: 1
+  },
   content: {
     marginTop: 10,
     paddingBottom: 20,
