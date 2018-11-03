@@ -17,6 +17,7 @@ const resourceReducer = (state = initialState, action) => {
       return {
         ...state,
         resources: action.payload,
+        filteredResources: action.payload,
         languages: getLanguages(action.payload),
         modules: getModules(action.payload),
         loading: false

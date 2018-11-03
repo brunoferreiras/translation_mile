@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { filterContains } from '../actions/filter';
 import Select from '../components/Select';
 
 class FormSearch extends Component {
@@ -12,7 +13,7 @@ class FormSearch extends Component {
           labelDefault="Todas as linguagens"
           items={this.props.languages}
         />
-        <Select labelDefault="Todas os módulos" items={this.props.modules} />
+        <Select labelDefault="Todos os módulos" items={this.props.modules} />
         <SearchBar
           lightTheme
           onChangeText={word => this.props.filterContains(word)}
@@ -34,7 +35,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    filterContains: word => dispatch(filterContains(word))
+  };
 };
 
 export default connect(

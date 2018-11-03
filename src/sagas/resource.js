@@ -5,7 +5,6 @@ import { getResources as getResourcesAPI, getResourcesTest} from '../api/resourc
 function* get(action) {
   try {
     const response = getResourcesTest();
-    console.log('SAGA: ', response);
     // const response = yield call(getResourcesAPI);
     yield put({ type: types.SAVE_RESOURCES, payload: response});
     // yield put({ type: types.SAVE_RESOURCES, payload: response.data});

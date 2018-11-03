@@ -12,7 +12,7 @@ class ListScreen extends Component {
 
     this.state = {
       page: 1,
-      numberPartial: 10
+      numberPartial: 5
     };
   }
 
@@ -21,10 +21,10 @@ class ListScreen extends Component {
   }
 
   componentDidMount() {
-    console.log('DID MOUNT: ');
+    this.props.getResources();
   }
 
-  incrementPage() {
+  incrementPage = () => {
     this.setState({ page: this.state.page + 1 });
   }
 
@@ -36,18 +36,18 @@ class ListScreen extends Component {
 
   render() {
     const { loading, resources } = this.props;
-    const resourcesResult = this.getPartialResources(resources);
+    console.log('STATE: ', this.state);
     return (
       <ScrollView contentContainerStyle={styles.container}>
         <Header title="Translations Mile" leftIcon="menu" rightIcon="home" />
         <FormSearch />
         <FlatList
-          style={styles.flatlist}
           contentContainerStyle={styles.content}
-          data={resourcesResult}
+          data={this.getPartialResources(resources)}
           refreshing={loading}
           onRefresh={() => this.updateResources()}
-          onEndReached={() => this.incrementPage()}
+          onEndReached={this.incrementPage}
+          onEndReachedThreshold={0}
           ListEmptyComponent={() => (
             <Text style={styles.emptyText}>
               Nenhum recurso de tradução encontrado!
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    resources: state.resource.resources,
+    resources: state.resource.filteredResources,
     loading: state.resource.loading
   };
 };
