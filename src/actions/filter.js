@@ -6,3 +6,10 @@ export const filterContains = value => {
     payload: value
   };
 };
+
+export const filterByLanguage = language => {
+  return {
+    type: types.FILTER_BY_LANGUAGE,
+    payload: language
+  };
+};

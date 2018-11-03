@@ -1,5 +1,5 @@
 import * as types from '../actions/types';
-import { filterContains, getLanguages, getModules } from '../utils/filters';
+import { filterContains, getLanguages, getModules, filterByLanguage } from '../utils/filters';
 
 const initialState = {
   resources: [],
@@ -27,6 +27,11 @@ const resourceReducer = (state = initialState, action) => {
         ...state,
         filteredResources: filterContains(action.payload, state.resources)
       };
+    case types.FILTER_BY_LANGUAGE:
+      return {
+        ...state,
+        filteredResources: filterByLanguage(action.payload, state.resources)
+      }
     default:
       return state;
   }
