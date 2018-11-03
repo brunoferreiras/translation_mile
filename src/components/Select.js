@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Picker } from 'react-native';
+import { Picker, StyleSheet, View } from 'react-native';
 import { ALL } from '../actions/types';
 
 class Select extends Component {
@@ -21,20 +21,32 @@ class Select extends Component {
   render() {
     const { labelDefault, items, onSelected } = this.props;
     return (
-      <Picker
-        selectedValue={this.state.selected}
-        onValueChange={value =>
-          this.setState({ selected: value }, () =>
-            onSelected(this.state.selected)
-          )
-        }
-      >
-        <Picker.Item label={labelDefault} value={ALL} />
-        {this.renderItems(items)}
-      </Picker>
+      <View style={styles.container}>
+        <Picker
+          selectedValue={this.state.selected}
+          onValueChange={value =>
+            this.setState({ selected: value }, () =>
+              onSelected(this.state.selected)
+            )
+          }
+        >
+          <Picker.Item label={labelDefault} value={ALL} />
+          {this.renderItems(items)}
+        </Picker>
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginHorizontal: 10,
+    borderColor: '#8CB13E',
+    borderWidth: 1,
+    backgroundColor: '#fff',
+    borderRadius: 10
+  }
+});
 
 Select.propTypes = {
   items: PropTypes.array.isRequired,

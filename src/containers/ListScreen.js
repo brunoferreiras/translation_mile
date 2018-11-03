@@ -36,7 +36,6 @@ class ListScreen extends Component {
 
   render() {
     const { loading, resources } = this.props;
-    console.log('STATE: ', this.state);
     return (
       <ScrollView contentContainerStyle={styles.container}>
         <Header title="Translations Mile" leftIcon="menu" rightIcon="home" />
