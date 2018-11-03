@@ -13,7 +13,8 @@ const rootPersistConfig = {
 const resourcePersistConfig = {
   key: 'resource',
   storage,
-  whitelist: ['resources']
+  whitelist: ['resources'],
+  blacklist: ['loading']
 };
 
 const rootReducer = combineReducers({

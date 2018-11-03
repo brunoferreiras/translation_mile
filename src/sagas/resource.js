@@ -1,11 +1,14 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import * as types from '../actions/types';
-import { getResources as getResourcesAPI} from '../api/resource';
+import { getResources as getResourcesAPI, getResourcesTest} from '../api/resource';
 
 function* get(action) {
   try {
-    const response = yield call(getResourcesAPI);
-    yield put({ type: types.SAVE_RESOURCES, payload: response.data});
+    const response = getResourcesTest();
+    console.log('SAGA: ', response);
+    // const response = yield call(getResourcesAPI);
+    yield put({ type: types.SAVE_RESOURCES, payload: response});
+    // yield put({ type: types.SAVE_RESOURCES, payload: response.data});
   } catch (error) {
     console.log(error);
   }
