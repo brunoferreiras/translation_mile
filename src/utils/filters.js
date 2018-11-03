@@ -6,3 +6,11 @@ export const filterContains = (word, resources) => {
     resources
   );
 };
+
+export const getLanguages = resources => {
+  return R.uniq(R.map(element => element.resource.module_id, resources));
+};
+
+export const getModules = resources => {
+  return R.uniq(R.map(element => element.resource.language_id, resources));
+};
