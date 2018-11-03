@@ -1,4 +1,5 @@
 import R from 'ramda';
+import { ALL } from '../actions/types';
 
 export const filterContains = (word, resources) => {
   return R.filter(
@@ -8,14 +9,18 @@ export const filterContains = (word, resources) => {
 };
 
 export const filterByLanguage = (language, resources) => {
-  return R.filter(
-    element => element.resource.language_id === R.toLower(language),
-    resources
-  );
+  return language === ALL
+    ? resources
+    : R.filter(
+        element => element.resource.language_id === R.toLower(language),
+        resources
+      );
 };
 
 export const filterByModule = (module, resources) => {
-  return R.filter(element => element.resource.module_id === module, resources);
+  return module === ALL
+    ? resources
+    : R.filter(element => element.resource.module_id === module, resources);
 };
 
 export const getLanguages = resources => {
