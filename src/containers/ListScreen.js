@@ -15,9 +15,13 @@ class ListScreen extends Component {
     };
   }
 
-  componentDidMount() {
+  updateResources() {
     this.props.getResources();
-  }  
+  }
+
+  componentDidMount() {
+    console.log('DID MOUNT: ');
+  }
 
   incrementPage() {
     this.setState({ page: this.state.page + 1 });
@@ -39,7 +43,7 @@ class ListScreen extends Component {
           contentContainerStyle={styles.content}
           data={resources}
           refreshing={loading}
-          onRefresh={() => console.log('Update translations')}
+          onRefresh={() => this.updateResources()}
           onEndReached={() => this.incrementPage()}
           ListEmptyComponent={() => (
             <Text style={styles.emptyText}>
@@ -59,7 +63,8 @@ class ListScreen extends Component {
 const styles = StyleSheet.create({
   content: {
     marginTop: 10,
-    paddingBottom: 20
+    paddingBottom: 20,
+    alignSelf: 'stretch'
   },
   emptyText: {
     marginTop: 15,
