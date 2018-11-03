@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getResources } from '../actions/resource';
 import Card from '../components/Card';
 import Header from '../components/Header';
+import FormSearch from '../containers/FormSearch';
 
 class ListScreen extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class ListScreen extends Component {
     return (
       <View>
         <Header title="Translations Mile" leftIcon="menu" rightIcon="home" />
+        <FormSearch />
         <FlatList
           contentContainerStyle={styles.content}
           data={resources}
