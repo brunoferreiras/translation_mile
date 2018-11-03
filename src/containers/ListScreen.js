@@ -38,7 +38,7 @@ class ListScreen extends Component {
     const { loading, resources } = this.props;
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        <Header title="Translations Mile" leftIcon="menu" rightIcon="home" />
+        <Header title="Translation Mile" leftIcon="menu" rightIcon="home" />
         <FormSearch />
         <FlatList
           contentContainerStyle={styles.content}
