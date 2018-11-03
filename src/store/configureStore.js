@@ -7,14 +7,14 @@ import rootSagas from '../sagas';
 
 const rootPersistConfig = {
   key: 'root',
-  storage
+  storage,
+  blacklist: ['resource']
 };
 
 const resourcePersistConfig = {
   key: 'resource',
   storage,
-  whitelist: ['resources'],
-  blacklist: ['loading']
+  blacklist: ['loading', 'resources']
 };
 
 const rootReducer = combineReducers({

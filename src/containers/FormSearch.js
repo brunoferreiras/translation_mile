@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { filterContains } from '../utils/filters';
+import Select from '../components/Select';
 
 class FormSearch extends Component {
   render() {
-    console.log('Form Search: ', this.props.resources);
     return (
       <View>
+        <Select
+          labelDefault="Todas as linguagens"
+          items={this.props.languages}
+        />
+        <Select labelDefault="Todas os módulos" items={this.props.modules} />
         <SearchBar
           lightTheme
-          onChangeText={word =>
-            console.log('word: ', filterContains(word, this.props.resources))
-          }
+          onChangeText={word => this.props.filterContains(word)}
           onClearText={() => console.log('clear text')}
           icon={{ type: 'font-awesome', name: 'search' }}
           placeholder="Contém..."
@@ -25,7 +27,9 @@ class FormSearch extends Component {
 
 const mapStateToProps = state => {
   return {
-    resources: state.resource.resources
+    resources: state.resource.resources,
+    languages: state.resource.languages,
+    modules: state.resource.modules
   };
 };
 

@@ -18,13 +18,13 @@ class Select extends Component {
   }
 
   render() {
-    const { items } = this.props;
+    const { labelDefault, items } = this.props;
     return (
       <Picker
         selectedValue={this.state.selected}
         onValueChange={value => this.setState({ selected: value })}
       >
-        <Picker.Item label="Todas as linguagens" value="total" />
+        <Picker.Item label={labelDefault} value="total" />
         {this.renderItems(items)}
       </Picker>
     );
@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
 });
 
 Select.propTypes = {
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  labelDefault: PropTypes.string.isRequired
 };
 
 export default Select;

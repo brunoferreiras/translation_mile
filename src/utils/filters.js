@@ -8,9 +8,9 @@ export const filterContains = (word, resources) => {
 };
 
 export const getLanguages = resources => {
-  return R.uniq(R.map(element => element.resource.module_id, resources));
+  return R.uniq(R.map(element => R.toUpper(element.resource.language_id), resources));
 };
 
 export const getModules = resources => {
-  return R.uniq(R.map(element => element.resource.language_id, resources));
+  return R.uniq(R.map(element => element.resource.module_id, resources));
 };
