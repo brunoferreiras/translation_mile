@@ -1,4 +1,5 @@
 import * as filters from '../../src/utils/filters';
+import { ALL } from '../../src/actions/types';
 
 describe('Filters Utils', () => {
   let resources;
@@ -104,5 +105,13 @@ describe('Filters Utils', () => {
   it('should to return the modules of resources', () => {
     const expected = ['JME', 'DEPOT'];
     expect(filters.getModules(resources)).toEqual(expected);
+  });
+
+  it('should to return all resources when selected all languages', () => {
+    expect(filters.filterByLanguage(ALL, resources)).toEqual(resources);
+  });
+
+  it('should to return all resources when selected all modules', () => {
+    expect(filters.filterByModule(ALL, resources)).toEqual(resources);
   });
 });
