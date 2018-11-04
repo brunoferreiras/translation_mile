@@ -10,6 +10,8 @@ describe('Resource Saga', () => {
     expect(generator.next().value).toEqual(
       takeLatest(types.GET_RESOURCES, get)
     );
+
+    expect(generator.next().done).toBeTruthy();
   });
 
   it('should to get the resources from API', () => {
@@ -22,6 +24,8 @@ describe('Resource Saga', () => {
         payload: undefined
       })
     );
+
+    expect(generator.next().done).toBeTruthy();
   });
 
   it('should return exception when happen error in API', () => {
@@ -34,5 +38,7 @@ describe('Resource Saga', () => {
         payload: undefined
       })
     );
+
+    expect(generator.next().done).toBeTruthy();
   });
 });
