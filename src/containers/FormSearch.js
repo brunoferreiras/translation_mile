@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import { ButtonGroup, SearchBar } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { filterByLanguage, filterByModule, filterContains } from '../actions/filter';
 import Select from '../components/Select';
+const { width: DEVICE_HEIGHT } = Dimensions.get('window');
 
 class FormSearch extends Component {
   constructor(props) {
@@ -71,11 +72,13 @@ const styles = StyleSheet.create({
     flex: 1
   },
   containerSearch: {
+    height: DEVICE_HEIGHT * 0.125,
     backgroundColor: 'white',
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 10,
     marginHorizontal: 10,
-    borderColor: '#8CB13E'
+    borderColor: '#8CB13E',
+    elevation: 0
   },
   inputStyle: {
     backgroundColor: 'white'

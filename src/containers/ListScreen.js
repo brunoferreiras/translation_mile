@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, ScrollView, StyleSheet, Text } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { getResources } from '../actions/resource';
 import Card from '../components/Card';
@@ -18,7 +18,7 @@ class ListScreen extends Component {
 
   updateResources = () => {
     this.props.getResources();
-  }
+  };
 
   componentDidMount() {
     this.props.getResources();
@@ -37,16 +37,16 @@ class ListScreen extends Component {
   render() {
     const { loading, resources } = this.props;
     return (
-      <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.container}>
         <Header title="Translation Mile" leftIcon="menu" rightIcon="home" />
-        <FormSearch />
         <FlatList
+          ListHeaderComponent={<FormSearch />}
           contentContainerStyle={styles.content}
           data={this.getPartialResources(resources)}
           refreshing={loading}
           onRefresh={this.updateResources}
           onEndReached={this.incrementPage}
-          onEndReachedThreshold={0}
+          onEndReachedThreshold={0.1}
           ListEmptyComponent={() => (
             <Text style={styles.emptyText}>
               Nenhum recurso de tradução encontrado!
@@ -56,17 +56,16 @@ class ListScreen extends Component {
             `${item.resource.resource_id}_${index}`
           }
           renderItem={this.renderItem}
+          ListFooterComponent={<View />}
         />
-      </ScrollView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  flatlist: {
-    flex: 1
-  },
   container: {
+    flex: 1,
     flexGrow: 1
   },
   content: {
