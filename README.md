@@ -60,6 +60,5 @@ yarn test:coverage
 * [Redux Saga](https://github.com/redux-saga/redux-saga)
 * [React Native Elements](https://github.com/react-native-training/react-native-elements)
 * [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
-* [Redux Persist](https://github.com/rt2zz/redux-persist)
 * [Jest](https://github.com/facebook/jest)
 * [Enzyme](https://github.com/airbnb/enzyme)

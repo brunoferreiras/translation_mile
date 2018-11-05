@@ -16,7 +16,7 @@ class ListScreen extends Component {
     };
   }
 
-  updateResources() {
+  updateResources = () => {
     this.props.getResources();
   }
 
@@ -26,7 +26,7 @@ class ListScreen extends Component {
 
   incrementPage = () => {
     this.setState({ page: this.state.page + 1 });
-  }
+  };
 
   getPartialResources(resources) {
     return [...resources.slice(0, this.state.page * this.state.numberPartial)];
@@ -44,7 +44,7 @@ class ListScreen extends Component {
           contentContainerStyle={styles.content}
           data={this.getPartialResources(resources)}
           refreshing={loading}
-          onRefresh={() => this.updateResources()}
+          onRefresh={this.updateResources}
           onEndReached={this.incrementPage}
           onEndReachedThreshold={0}
           ListEmptyComponent={() => (
@@ -71,8 +71,7 @@ const styles = StyleSheet.create({
   },
   content: {
     marginTop: 10,
-    paddingBottom: 20,
-    alignSelf: 'stretch'
+    paddingBottom: 20
   },
   emptyText: {
     marginTop: 15,
