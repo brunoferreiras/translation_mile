@@ -13,7 +13,7 @@ const LoadModal = props => {
       >
         <View style={styles.loaderOuterView}>
           <View style={styles.loaderView}>
-            <ActivityIndicator size={'large'} color={styles.background} />
+            <ActivityIndicator size={'large'} />
             <Text style={styles.textLoader}>{props.legend}</Text>
           </View>
         </View>
@@ -25,8 +25,8 @@ const LoadModal = props => {
 
 const styles = {
   loaderView: {
-    width: DEVICE_HEIGHT / 7,
-    height: DEVICE_HEIGHT / 7,
+    width: DEVICE_HEIGHT / 4,
+    height: DEVICE_HEIGHT / 4,
     justifyContent: 'center',
     backgroundColor: 'rgba(0,0,0,0.6)',
     borderRadius: 8
@@ -37,7 +37,7 @@ const styles = {
     justifyContent: 'center'
   },
   textLoader: {
-    fontSize: 10,
+    fontSize: 16,
     marginTop: 3,
     color: '#F9F7F2',
     textAlign: 'center'

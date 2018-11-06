@@ -5,6 +5,7 @@ import { getResources } from '../actions/resource';
 import Card from '../components/Card';
 import Header from '../components/Header';
 import FormSearch from '../containers/FormSearch';
+import LoadModal from '../components/LoadModal';
 
 class ListScreen extends Component {
   constructor(props) {
@@ -35,9 +36,10 @@ class ListScreen extends Component {
   renderItem = ({ item }) => <Card resource={item.resource} />;
 
   render() {
-    const { loading, resources } = this.props;
+    const { loading, resources, loadMessage } = this.props;
     return (
       <View style={styles.container}>
+        <LoadModal show={loading} legend={loadMessage} />
         <Header title="Translation Mile" leftIcon="menu" rightIcon="home" />
         <FlatList
           ListHeaderComponent={<FormSearch />}
